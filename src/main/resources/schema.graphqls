@@ -3,7 +3,8 @@ schema {
 }
 
 type QueryType {
-    movies: [Movie]
+    movies(id: Long): [Movie]
+    actors(id: Long, name: String): [Actor]
 }
 
 type Movie {

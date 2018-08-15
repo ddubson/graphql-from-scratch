@@ -22,7 +22,7 @@ import static graphql.schema.idl.RuntimeWiring.newRuntimeWiring;
 public class GraphQLConfig {
 	@Bean
 	public GraphQL graphQL(DataFetcher allMoviesFetcher,
-						   DataFetcher findMovieByIdFetcher) throws IOException {
+						   DataFetcher allActorsFetcher) throws IOException {
 		File file = ResourceUtils.getFile("classpath:schema.graphqls");
 		String result = String.join(" ", Files.readLines(file, Charsets.UTF_8));
 
@@ -30,7 +30,9 @@ public class GraphQLConfig {
 		TypeDefinitionRegistry typeDefinitionRegistry = schemaParser.parse(result);
 
 		RuntimeWiring runtimeWiring = newRuntimeWiring()
-				.type("QueryType", builder -> builder.dataFetcher("movies", allMoviesFetcher))
+				.type("QueryType", builder ->
+						builder.dataFetcher("movies", allMoviesFetcher)
+								.dataFetcher("actors", allActorsFetcher))
 				.build();
 
 		SchemaGenerator schemaGenerator = new SchemaGenerator();
