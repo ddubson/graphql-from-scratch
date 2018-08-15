@@ -21,7 +21,8 @@ import static graphql.schema.idl.RuntimeWiring.newRuntimeWiring;
 @Configuration
 public class GraphQLConfig {
 	@Bean
-	public GraphQL graphQL(DataFetcher movieRepository) throws IOException {
+	public GraphQL graphQL(DataFetcher allMoviesFetcher,
+						   DataFetcher findMovieByIdFetcher) throws IOException {
 		File file = ResourceUtils.getFile("classpath:schema.graphqls");
 		String result = String.join(" ", Files.readLines(file, Charsets.UTF_8));
 
@@ -29,11 +30,11 @@ public class GraphQLConfig {
 		TypeDefinitionRegistry typeDefinitionRegistry = schemaParser.parse(result);
 
 		RuntimeWiring runtimeWiring = newRuntimeWiring()
-				.type("QueryType", builder -> builder.dataFetcher("movies", movieRepository))
+				.type("QueryType", builder -> builder.dataFetcher("movies", allMoviesFetcher))
 				.build();
 
 		SchemaGenerator schemaGenerator = new SchemaGenerator();
-		GraphQLSchema graphQLSchema =  schemaGenerator.makeExecutableSchema(typeDefinitionRegistry, runtimeWiring);
+		GraphQLSchema graphQLSchema = schemaGenerator.makeExecutableSchema(typeDefinitionRegistry, runtimeWiring);
 		return GraphQL.newGraphQL(graphQLSchema).build();
 	}
 }

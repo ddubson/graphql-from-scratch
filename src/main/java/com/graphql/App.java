@@ -17,9 +17,11 @@ import static org.springframework.http.ResponseEntity.ok;
 @SpringBootApplication
 @RestController
 public class App {
-	private GraphQL graphQLAPI;
+	private final MovieFactory movieFactory;
+	private final GraphQL graphQLAPI;
 
-	public App(GraphQL graphQLAPI) {
+	public App(MovieFactory movieFactory, GraphQL graphQLAPI) {
+		this.movieFactory = movieFactory;
 		this.graphQLAPI = graphQLAPI;
 	}
 
@@ -29,7 +31,7 @@ public class App {
 
 	@GetMapping(value = "/rest/movies", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<Movie>> moviesRest() {
-		return ok(MovieFactory.create());
+		return ok(movieFactory.all());
 	}
 
 	@PostMapping(value = "/graphql/movies", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

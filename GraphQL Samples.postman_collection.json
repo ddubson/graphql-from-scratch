@@ -1,0 +1,162 @@
+{
+	"info": {
+		"name": "GraphQL Samples",
+		"_postman_id": "98568cfa-0dcc-deb5-0c4d-895307950307",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GraphQL",
+			"description": "",
+			"item": [
+				{
+					"name": "1. Get All Movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "de0920ba-b806-4be4-a7a1-3e916cb04539",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "query { \n\tmovies { \n\t\tid\n\t\tname,\n\t\tyear\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql",
+								"movies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "2. Get All Movies with Actors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "de0920ba-b806-4be4-a7a1-3e916cb04539",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\tmovies { \n\t\tid\n\t\tname,\n\t\tyear\n\t\tactors {\n\t\t\tid\n\t\t\tname\n\t\t}\n\t} \n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql",
+								"movies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "3. Get Movie Name and All Actors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "de0920ba-b806-4be4-a7a1-3e916cb04539",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\tmovies(id: 1) {\n\t\tname\n\t\tactors {\n\t\t\tname\n\t\t}\n\t} \n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/graphql/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"graphql",
+								"movies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "REST",
+			"description": "",
+			"item": [
+				{
+					"name": "1. Get All Movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "de0920ba-b806-4be4-a7a1-3e916cb04539",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \n\tmovies { \n\t\tname,\n\t\tyear\n\t} \n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/rest/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"rest",
+								"movies"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
