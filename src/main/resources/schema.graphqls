@@ -1,0 +1,19 @@
+schema {
+    query: QueryType
+}
+
+type QueryType {
+    movies: [Movie]
+}
+
+type Movie {
+    id: Long!
+    name: String
+    year: String
+    actors: [Actor]
+}
+
+type Actor {
+    id: Long!
+    name: String
+}

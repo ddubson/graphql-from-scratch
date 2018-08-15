@@ -1,17 +1,11 @@
 package com.graphql;
 
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Data
 public class Actor {
-	private String name;
-
-	public Actor(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	private final Long id;
+	private final String name;
 }
